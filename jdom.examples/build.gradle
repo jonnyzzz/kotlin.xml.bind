@@ -1,0 +1,5 @@
+dependencies {
+  compile project(':jdom')
+
+  compile 'org.jdom:jdom2:2.0.6'
+}
