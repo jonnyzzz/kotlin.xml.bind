@@ -3,7 +3,7 @@ package org.jonnyzzz.kotlin.xml.bind.jdom.impl.bind
 import org.jdom2.CDATA
 import org.jdom2.Element
 import org.jdom2.Text
-import org.jonnyzzz.kotlin.xml.bind.jdom.impl.JDOM
+import org.jonnyzzz.kotlin.xml.bind.jdom.impl.JDOMIMPL
 
 /**
  * Created by eugene.petrenko@gmail.com
@@ -46,8 +46,8 @@ class XmlAttributeBind(val attributeName : String) : XPropertyImpl<String>(null)
 }
 
 class XmlSubBind<T : Any>(val clazz : Class<T>) : XPropertyImpl<T>(null), XmlBind {
-  override fun loadImpl(scope: Element?): T? = if (scope == null) null else JDOM.load(scope, clazz)
+  override fun loadImpl(scope: Element?): T? = if (scope == null) null else JDOMIMPL.load(scope, clazz)
   override fun saveImpl(value: T, scope: Element) {
-    JDOM.save(scope, value)
+    JDOMIMPL.save(scope, value)
   }
 }
