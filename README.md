@@ -1,4 +1,4 @@
-Kotlin XML DLS
+Kotlin XML data binding DLS
 ==============
 
 This is a tiny library that allows one to generate
