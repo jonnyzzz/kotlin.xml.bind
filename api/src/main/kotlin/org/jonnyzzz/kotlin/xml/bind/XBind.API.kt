@@ -2,10 +2,10 @@ package org.jonnyzzz.kotlin.xml.bind
 
 import kotlin.properties.ReadWriteProperty
 
-object XName                             ///element name
-object XText                             ///element text
-object XCDATA                            ///element text. Written as CDATA
-data class XUnknownElement<T>(val clazz: Class<T>)       ///stores all un-matched XML part as an jdom Element
+object XName ///element name
+object XText ///element text
+object XCDATA  ///element text. Written as CDATA
+open class XUnknownElement<T>(val clazz : Class<T>) ///stores all un-matched XML part as an jdom Element
 data class XAttribute(val name : String) ///named attribute
 data class XSub<T>(val clazz : Class<T>) ///bind a sub-class
 
@@ -31,8 +31,9 @@ interface XMLsBuilder {
   operator fun div(t : XName) : XProperty<List<String>>
   operator fun div(t : XText) : XProperty<List<String>>
   operator fun div(t : XCDATA) : XProperty<List<String>>
-  operator fun <T : Any> div(t : XUnknownElement<T>) : XProperty<List<T>>
   operator fun div(t : XAttribute) : XProperty<List<String>>
+
+  operator fun <T : Any> div(t : XUnknownElement<T>) : XProperty<List<T>>
   operator fun <T : Any> div(t : XSub<T>) : XProperty<List<T>>
 }
 
@@ -46,14 +47,15 @@ interface XMLBuilder {
   operator fun div(t : XName) : XProperty<String>
   operator fun div(t : XText) : XProperty<String>
   operator fun div(t : XCDATA) : XProperty<String>
-  operator fun <T : Any> div(t : XUnknownElement<T>) : XProperty<List<T>>
   operator fun div(t : XAttribute) : XProperty<String>
+
+  operator fun <T : Any> div(t : XUnknownElement<T>) : XProperty<T>
   operator fun <T : Any> div(t : XSub<T>) : XProperty<T>
 }
 
 interface XMLAnyBinder {
   operator fun <T : Any> div(t : XSub<T>) : XProperty<T>
-  operator fun <T : Any> div(t : XUnknownElement<T>) : XProperty<List<T>>
+  operator fun <T : Any> div(t : XUnknownElement<T>) : XProperty<T>
 }
 
 interface XMLsAnyBinder {
