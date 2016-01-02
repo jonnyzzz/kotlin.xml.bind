@@ -6,10 +6,10 @@ import kotlin.reflect.KProperty
 /**
  * Created by eugene.petrenko@gmail.com
  */
-abstract class XPropertyImpl<T : Any>(public override var value : T?,
-                                      public override var saveOrder : Int? = null) : XBindProperty<T> {
-  operator public final override fun getValue(thisRef : Any, property : KProperty<*>) : T? = value
-  operator public final override fun setValue(thisRef : Any, property : KProperty<*>, value : T?) {
+abstract class XPropertyImpl<T : Any>(public override var value: T?,
+                                      public override var saveOrder: Int? = null) : XBindPropertyDefs<T> {
+  operator public final override fun getValue(thisRef: Any, property: KProperty<*>): T? = value
+  operator public final override fun setValue(thisRef: Any, property: KProperty<*>, value: T?) {
     this@XPropertyImpl.value = value
   }
 
@@ -22,6 +22,6 @@ abstract class XPropertyImpl<T : Any>(public override var value : T?,
     value = loadImpl(scope)
   }
 
-  protected abstract fun saveImpl(value : T, scope : Element)
-  protected abstract fun loadImpl(scope : Element?) : T?
+  protected abstract fun saveImpl(value: T, scope: Element)
+  protected abstract fun loadImpl(scope: Element?): T?
 }
