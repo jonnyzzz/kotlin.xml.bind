@@ -13,7 +13,7 @@ private fun <T : Any> anyElementSave(property : XBindProperty<T>, scope: () -> E
   val v = property.value ?: return
 
   val elementName = if (v is Element) {
-    v.getName()
+    v.name
   } else {
     val nameBind = v
             .delegatedProperties(XmlNameBind::class.java)
@@ -28,7 +28,7 @@ private fun <T : Any> anyElementSave(property : XBindProperty<T>, scope: () -> E
   }
 }
 
-class XmlElementWrap<T : Any>(val elementName : String, val property : XBindProperty<T>) : XBindProperty<T> by property, XElementMatcher {
+class XmlElementWrap<T : Any>(val elementName : String, property : XBindProperty<T>) : XPropertyDelegate<T>(property), XElementMatcher {
   override fun load(scope: Element?) {
     property.load(scope?.getChild(elementName))
   }
@@ -43,7 +43,7 @@ class XmlElementWrap<T : Any>(val elementName : String, val property : XBindProp
   override fun matchingElements() = elementName
 }
 
-class XmlAnyElementWrap<T : Any>(val property : XBindProperty<T>) : XBindProperty<T> by property {
+class XmlAnyElementWrap<T : Any>(property : XBindProperty<T>) : XPropertyDelegate<T>(property) {
   override fun load(scope: Element?) {
     property.load(scope?.getChildren()?.firstOrNull())
   }
