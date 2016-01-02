@@ -73,7 +73,7 @@ subprojects {
         repo = 'maven'
         name = 'kotlin.xml.bind'
         userOrg = getProperty('bintrayUser')
-        licenses = ['Apache2.0']
+        licenses = ['Apache-2.0']
         vcsUrl = 'https://github.com/jonnyzzz/kotlin.xml.bind.git'
       }
     }
