@@ -45,7 +45,7 @@ class XmlAttributeBind(val attributeName : String) : XPropertyImpl<String>(null)
   }
 }
 
-class XmlSubBind<T : Any>(val clazz : Class<T>) : XPropertyImpl<T>(null), XmlBind {
+class XmlSubBind<T : Any>(val clazz : Class<T>) : XPropertyImpl<T>(null) {
   override fun loadImpl(scope: Element?): T? = if (scope == null) null else JDOMIMPL.load(scope, clazz)
   override fun saveImpl(value: T, scope: Element) {
     JDOMIMPL.save(scope, value)
