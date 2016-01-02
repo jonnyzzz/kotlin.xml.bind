@@ -1,0 +1,9 @@
+dependencies {
+  compile project(':api')
+
+  compile 'org.jdom:jdom2:2.0.6'
+  compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
+
+  compile "org.jonnyzzz.kotlin.xml.dsl:jdom:$kotlin_xml_dsl_version"
+}

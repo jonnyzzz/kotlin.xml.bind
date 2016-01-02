@@ -1,0 +1,3 @@
+rootProject.name = 'kotlin xml bind dsl'
+
+include ':api', ':jdom', ":jdom.examples"

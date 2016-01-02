@@ -1,0 +1,44 @@
+buildscript {
+  ext.kotlin_version = '1.0.0-beta-3595'
+  ext.kotlin_xml_dsl_version='0.1.2'
+
+  repositories { mavenCentral() }
+  dependencies { classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" }
+}
+
+repositories {
+  mavenCentral()
+}
+
+version = project.hasProperty('teamcity') ? project['teamcity']['build.number'] : 'SNAPSHOT'
+
+subprojects {
+  apply plugin: 'java'
+  apply plugin: 'kotlin'
+
+  group = 'org.jonnyzzz.kotlin.xml.bind'
+
+  sourceCompatibility = 1.8
+  targetCompatibility = 1.8
+
+  repositories {
+    mavenCentral()
+    maven { url "http://dl.bintray.com/jonnyzzz/maven" }
+  }
+
+  dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    testCompile "junit:junit:4.12"
+  }
+
+  test {
+    useJUnit()
+    testLogging.showStandardStreams = true
+  }
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.9'
+}
+
