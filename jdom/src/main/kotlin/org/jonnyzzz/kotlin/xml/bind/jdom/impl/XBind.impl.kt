@@ -9,18 +9,18 @@ import org.jonnyzzz.kotlin.xml.bind.jdom.impl.bind.XmlBind
 import java.util.*
 
 
-class XMLAnyBuilderImpl(val elementsBefore : XMLBuilderImpl) : XMLAnyBinder {
+internal class XMLAnyBuilderImpl(val elementsBefore : XMLBuilderImpl) : XMLAnyBinder {
   override fun <T : Any> div(t: XSub<T>) = elementsBefore.wrap( XmlAnyElementWrap( XMLBuilderImpl() / t ))
   override fun <T : Any> div(t: XUnknownElement<T>) = elementsBefore.wrap( XmlAnyElementWrap( XMLBuilderImpl() / t ))
 }
 
-class XMLsAnyBuilderImpl(val elementsBefore : XMLBuilderImpl) : XMLsAnyBinder {
+internal class XMLsAnyBuilderImpl(val elementsBefore : XMLBuilderImpl) : XMLsAnyBinder {
   override fun <T : Any> div(t: XSub<T>) = elementsBefore.wrap( XmlAnyElementsWrap { XMLBuilderImpl() / t })
   override fun <T : Any> div(t: XUnknownElement<T>) = elementsBefore.wrap( XmlAnyElementsWrap { XMLBuilderImpl() / t })
 }
 
 
-object JDOMIMPL {
+internal object JDOMIMPL {
   val ROOT : XMLBuilderImpl
     get() = XMLBuilderImpl()
 

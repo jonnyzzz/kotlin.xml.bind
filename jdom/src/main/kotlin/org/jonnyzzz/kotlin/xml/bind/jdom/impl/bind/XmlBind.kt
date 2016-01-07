@@ -5,7 +5,7 @@ import org.jdom2.Element
 /**
  * Created by eugene.petrenko@gmail.com
  */
-interface XmlBind {
+internal interface XmlBind {
   fun load(scope : Element?)
   fun save(scope : () -> Element)
 

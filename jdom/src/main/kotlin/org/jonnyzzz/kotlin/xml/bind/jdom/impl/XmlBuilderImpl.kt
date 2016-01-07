@@ -7,8 +7,8 @@ import org.jonnyzzz.kotlin.xml.bind.jdom.impl.bind.*
 /**
  * Created by eugene.petrenko@gmail.com
  */
-class XMLBuilderImpl(val elementNames : List<String> = listOf(),
-                     val saveOrder : Int? = null) : XMLRootBuilder {
+internal class XMLBuilderImpl(val elementNames : List<String> = listOf(),
+                              val saveOrder : Int? = null) : XMLRootBuilder {
   override fun div(element: String) = XMLBuilderImpl(elementNames + listOf(element), saveOrder)
   override fun div(element: XAnyElement) = XMLAnyBuilderImpl(this)
 

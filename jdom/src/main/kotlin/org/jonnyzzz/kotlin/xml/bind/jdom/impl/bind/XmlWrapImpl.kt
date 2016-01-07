@@ -28,7 +28,7 @@ private fun <T : Any> anyElementSave(property : XBindProperty<T>, scope: () -> E
   }
 }
 
-class XmlElementWrap<T : Any>(val elementName : String, property : XBindProperty<T>) : XPropertyDelegate<T>(property), XElementMatcher {
+internal class XmlElementWrap<T : Any>(val elementName : String, property : XBindProperty<T>) : XPropertyDelegate<T>(property), XElementMatcher {
   override fun load(scope: Element?) {
     property.load(scope?.getChild(elementName))
   }
@@ -43,7 +43,7 @@ class XmlElementWrap<T : Any>(val elementName : String, property : XBindProperty
   override fun matchingElements() = elementName
 }
 
-class XmlAnyElementWrap<T : Any>(property : XBindProperty<T>) : XPropertyDelegate<T>(property) {
+internal class XmlAnyElementWrap<T : Any>(property : XBindProperty<T>) : XPropertyDelegate<T>(property) {
   override fun load(scope: Element?) {
     property.load(scope?.getChildren()?.firstOrNull())
   }
@@ -55,7 +55,7 @@ class XmlAnyElementWrap<T : Any>(property : XBindProperty<T>) : XPropertyDelegat
   }
 }
 
-class XmlElementsWrap<T : Any>(val elementName : String, val property : () -> XBindProperty<T>) : XPropertyImpl<List<T>>(null), XElementMatcher {
+internal class XmlElementsWrap<T : Any>(val elementName : String, val property : () -> XBindProperty<T>) : XPropertyImpl<List<T>>(null), XElementMatcher {
   override fun loadImpl(scope: Element?): List<T>? {
     if (scope == null) return null
     return scope.getChildren(elementName)?.map {
@@ -76,7 +76,7 @@ class XmlElementsWrap<T : Any>(val elementName : String, val property : () -> XB
   override fun matchingElements(): String = elementName
 }
 
-class XmlAnyElementsWrap<T : Any>(val property : () -> XBindProperty<T>) : XPropertyImpl<List<T>>(null) {
+internal class XmlAnyElementsWrap<T : Any>(val property : () -> XBindProperty<T>) : XPropertyImpl<List<T>>(null) {
   override fun loadImpl(scope: Element?): List<T>? {
     if (scope == null) return null
     return scope.getChildren()?.map {

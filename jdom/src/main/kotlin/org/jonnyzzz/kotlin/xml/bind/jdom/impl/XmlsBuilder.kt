@@ -7,9 +7,9 @@ import org.jonnyzzz.kotlin.xml.bind.jdom.impl.bind.XmlElementsWrap
 /**
  * Created by eugene.petrenko@gmail.com
  */
-class XMLsBuilderImpl(val elementsBefore : XMLBuilderImpl,
-                      val elementAsList : String,
-                      val elementsAfter : List<String> = listOf()) : XMLsBuilder {
+internal class XMLsBuilderImpl(val elementsBefore : XMLBuilderImpl,
+                               val elementAsList : String,
+                               val elementsAfter : List<String> = listOf()) : XMLsBuilder {
   override fun div(element: String) = XMLsBuilderImpl(elementsBefore, elementAsList, elementsAfter + listOf(element))
 
   override fun div(t: XName) = wrap { this / t }

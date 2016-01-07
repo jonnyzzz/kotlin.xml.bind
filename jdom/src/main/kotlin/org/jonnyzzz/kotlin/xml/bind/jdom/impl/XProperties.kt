@@ -3,11 +3,11 @@ package org.jonnyzzz.kotlin.xml.bind.jdom.impl
 import kotlin.reflect.declaredMemberProperties
 
 
-public fun <T : Any> Class<T>.declaredPropertyNames(): Set<String> {
+internal fun <T : Any> Class<T>.declaredPropertyNames(): Set<String> {
   return this.kotlin.declaredMemberProperties.map { x -> x.name }.toSortedSet()
 }
 
-public fun <T : Any, Y : Any> T.delegatedProperties(propertyDelegate: Class<Y>): List<Y> = scan(propertyDelegate, this)
+internal fun <T : Any, Y : Any> T.delegatedProperties(propertyDelegate: Class<Y>): List<Y> = scan(propertyDelegate, this)
 
 private fun <T : Any, Y : Any> scan(propertyDelegate: Class<Y>, obj: T, clazz: Class<T> = obj.javaClass): List<Y> {
   val names = clazz.declaredPropertyNames()
