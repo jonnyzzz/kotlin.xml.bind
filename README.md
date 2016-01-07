@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jonnyzzz/kotlin.xml.bind.svg?branch=master)](https://travis-ci.org/jonnyzzz/kotlin.xml.bind)
+
 Kotlin XML data binding DLS
 ==============
 
