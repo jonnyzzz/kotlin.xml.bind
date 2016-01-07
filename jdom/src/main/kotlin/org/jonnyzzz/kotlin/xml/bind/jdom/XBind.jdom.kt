@@ -5,9 +5,9 @@ import org.jonnyzzz.kotlin.xml.bind.XMLRootBuilder
 import org.jonnyzzz.kotlin.xml.bind.XUnknownElement
 import org.jonnyzzz.kotlin.xml.bind.jdom.impl.JDOMIMPL
 
-public object XUnknown : XUnknownElement<Element>(Element::class.java)
+object XUnknown : XUnknownElement<Element>(Element::class.java)
 
-public interface JDOMXMLRootBuilder {
+interface JDOMXMLRootBuilder {
   public fun <T : Any> load(element: Element, clazz: Class<T>): T
   public fun <T : Any> save(t: T, clazz: Class<T> = t.javaClass): Element
 
@@ -15,10 +15,10 @@ public interface JDOMXMLRootBuilder {
 }
 
 ///root object for app bindings, data factory
-public val JXML : XMLRootBuilder
+val JXML : XMLRootBuilder
    get() = JDOMIMPL.ROOT
 
-public object JDOM : JDOMXMLRootBuilder {
+object JDOM : JDOMXMLRootBuilder {
   override fun <T : Any> load(element: Element, clazz: Class<T>): T = JDOMIMPL.load(element, clazz)
   override fun <T : Any> save(t: T, clazz: Class<T>): Element = JDOMIMPL.save(t, clazz)
   override fun <T : Any> clone(t: T): T = JDOMIMPL.clone(t)
