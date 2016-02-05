@@ -10,7 +10,7 @@ import kotlin.properties.Delegates
 import kotlin.reflect.KProperty
 
 
-public class XPropertiesTest {
+  public class XPropertiesTest {
 
   @Test
   public fun should_declaredPropertiesNames() {

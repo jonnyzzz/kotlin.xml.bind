@@ -8,10 +8,10 @@ import org.jonnyzzz.kotlin.xml.bind.jdom.impl.JDOMIMPL
 object XUnknown : XUnknownElement<Element>(Element::class.java)
 
 interface JDOMXMLRootBuilder {
-  public fun <T : Any> load(element: Element, clazz: Class<T>): T
-  public fun <T : Any> save(t: T, clazz: Class<T> = t.javaClass): Element
+  fun <T : Any> load(element: Element, clazz: Class<T>): T
+  fun <T : Any> save(t: T, clazz: Class<T> = t.javaClass): Element
 
-  public fun <T : Any> clone(t: T): T
+  fun <T : Any> clone(t: T): T
 }
 
 ///root object for app bindings, data factory

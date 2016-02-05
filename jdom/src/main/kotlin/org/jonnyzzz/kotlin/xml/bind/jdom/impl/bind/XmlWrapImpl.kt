@@ -45,7 +45,7 @@ internal class XmlElementWrap<T : Any>(val elementName : String, property : XBin
 
 internal class XmlAnyElementWrap<T : Any>(property : XBindProperty<T>) : XPropertyDelegate<T>(property) {
   override fun load(scope: Element?) {
-    property.load(scope?.getChildren()?.firstOrNull())
+    property.load(scope?.children?.firstOrNull())
   }
 
   override fun save(scope: () -> Element) {
@@ -79,7 +79,7 @@ internal class XmlElementsWrap<T : Any>(val elementName : String, val property :
 internal class XmlAnyElementsWrap<T : Any>(val property : () -> XBindProperty<T>) : XPropertyImpl<List<T>>(null) {
   override fun loadImpl(scope: Element?): List<T>? {
     if (scope == null) return null
-    return scope.getChildren()?.map {
+    return scope.children?.map {
       val p = property()
       p.load(it)
       p.value

@@ -14,9 +14,9 @@ object XAnyElements ///matches to a list of any elements
 
 data class XElements(val name : String) ///matches to a list of elements of given name
 
-public object XReadOnly
+object XReadOnly
 
-public data class XCallback<T : Any>(val onLoaded : (T?) -> T? = {i->i}, val onBeforeSave : (T?) -> T? = {i->i})
+data class XCallback<T : Any>(val onLoaded : (T?) -> T? = {i->i}, val onBeforeSave : (T?) -> T? = {i->i})
 
 
 interface XProperty<T : Any> : ReadWriteProperty<Any, T?> {
@@ -65,9 +65,9 @@ interface XMLsAnyBinder {
 
 @Target(AnnotationTarget.TYPE, AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
-public annotation class XRoot(val name : String)
+annotation class XRoot(val name : String)
 
-public interface XMLRootBuilder : XMLBuilder {
+interface XMLRootBuilder : XMLBuilder {
   fun saveOrder(order : Int) : XMLBuilder
   operator fun get(order : Int) : XMLBuilder = saveOrder(order)
 }

@@ -9,8 +9,8 @@ import kotlin.reflect.KProperty
 /**
  * Created by eugene.petrenko@gmail.com
  */
-internal  abstract class XPropertyBase<T : Any>(public override var value: T?,
-                                                public override var saveOrder: Int? = null) : XBindProperty<T> {
+internal  abstract class XPropertyBase<T : Any>(override var value: T?,
+                                                override var saveOrder: Int? = null) : XBindProperty<T> {
   constructor(p:  XBindProperty<T>) : this(p.value, p.saveOrder) { }
 
   operator final override fun getValue(thisRef: Any, property: KProperty<*>): T? = value
@@ -55,8 +55,8 @@ internal abstract class XPropertyDelegate<T : Any>(val property: XBindProperty<T
     set(value) { property.saveOrder = saveOrder }
 }
 
-internal abstract class XPropertyImpl<T : Any>(public override var value: T?,
-                                               public override var saveOrder: Int? = null) : XPropertyBase<T>(value, saveOrder) {
+internal abstract class XPropertyImpl<T : Any>(override var value: T?,
+                                               override var saveOrder: Int? = null) : XPropertyBase<T>(value, saveOrder) {
   final override fun save(scope: () -> Element) {
     val v = value
     if (v != null) saveImpl(v, scope())
