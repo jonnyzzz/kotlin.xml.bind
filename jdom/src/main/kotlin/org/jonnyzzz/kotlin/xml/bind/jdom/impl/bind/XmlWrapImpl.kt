@@ -3,7 +3,6 @@ package org.jonnyzzz.kotlin.xml.bind.jdom.impl.bind
 import org.jdom2.Content
 import org.jdom2.Element
 import org.jonnyzzz.kotlin.xml.bind.jdom.impl.delegatedProperties
-import org.jonnyzzz.kotlin.xml.bind.jdom.impl.having
 
 /**
  * Created by eugene.petrenko@gmail.com
