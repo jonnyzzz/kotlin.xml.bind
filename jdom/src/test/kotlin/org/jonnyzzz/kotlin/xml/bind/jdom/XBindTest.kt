@@ -6,7 +6,6 @@ import org.jdom2.output.Format
 import org.jdom2.output.XMLOutputter
 import org.jonnyzzz.kotlin.xml.bind.*
 import org.jonnyzzz.kotlin.xml.bind.jdom.impl.JDOMIMPL
-import org.jonnyzzz.kotlin.xml.bind.jdom.impl.having
 import org.jonnyzzz.kotlin.xml.dsl.XWriter
 import org.jonnyzzz.kotlin.xml.dsl.jdom.jdom
 import org.junit.Assert
