@@ -1,3 +1,4 @@
+@file:Suppress("unused")
 package org.jonnyzzz.kotlin.xml.bind.jdom
 
 
@@ -10,10 +11,9 @@ import kotlin.properties.Delegates
 import kotlin.reflect.KProperty
 
 
-  public class XPropertiesTest {
+class XPropertiesTest {
 
-  @Test
-  public fun should_declaredPropertiesNames() {
+  @Test fun should_declaredPropertiesNames() {
     val names = (object {
       val X: String by Delegates.notNull()
       val Y by lazy(LazyThreadSafetyMode.NONE) { 42 }
@@ -22,8 +22,7 @@ import kotlin.reflect.KProperty
     Assert.assertEquals(TreeSet(listOf("X", "Y")), TreeSet(names))
   }
 
-  @Test
-  public fun should_declaredProperties() {
+  @Test fun should_declaredProperties() {
     val ps = (object {
       val X: String by Delegates.notNull()
       val Y by lazy(LazyThreadSafetyMode.NONE) { 42 }
@@ -35,7 +34,7 @@ import kotlin.reflect.KProperty
   open class TestBase {
     private val XBase: String by Delegates.notNull()
     protected val YBase: String by Delegates.notNull()
-    public val ZBase: String by Delegates.notNull()
+    val ZBase: String by Delegates.notNull()
   }
 
   open class TestA : TestBase()
@@ -43,11 +42,10 @@ import kotlin.reflect.KProperty
   open class TestB : TestA() {
     private val X: String by Delegates.notNull()
     protected val Y: String by Delegates.notNull()
-    public val Z: String by Delegates.notNull()
+    val Z: String by Delegates.notNull()
   }
 
-  @Test
-  public fun should_declaredPropertiesNames_inherit() {
+  @Test fun should_declaredPropertiesNames_inherit() {
     val ps = (object : TestB() {
       val A: String by Delegates.notNull()
     }).javaClass.declaredPropertyNames()
@@ -55,8 +53,7 @@ import kotlin.reflect.KProperty
     Assert.assertEquals(TreeSet(listOf("A")), TreeSet(ps))
   }
 
-  @Test
-  public fun should_declaredProperties_inherit() {
+  @Test fun should_declaredProperties_inherit() {
     val ps = (object : TestB() {
       val A: String by Delegates.notNull()
     }).delegatedProperties(Any::class.java)
@@ -73,8 +70,7 @@ import kotlin.reflect.KProperty
     }
   }
 
-  @Test
-  public fun should_declaredProperties_filter() {
+  @Test fun should_declaredProperties_filter() {
     val ps = (object : TestB() {
       val A: String by TXProperty("42")
     }).delegatedProperties(MMM::class.java)
@@ -82,8 +78,7 @@ import kotlin.reflect.KProperty
     Assert.assertEquals(ps.size, 1)
   }
 
-  @Test
-  public fun should_declaredProperties_runtime_filter() {
+  @Test fun should_declaredProperties_runtime_filter() {
     val ps = (object : TestB() {
       val TXProperty : TXProperty<String> = object : TXProperty<String>("42"), QQQ {}
       val A: String by TXProperty
