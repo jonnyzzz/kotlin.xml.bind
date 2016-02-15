@@ -6,8 +6,3 @@ internal tailrec fun <T : Annotation, R> Class<R>.getAnnotationRec(ax: Class<T>)
   val sup = this.superclass ?: return null
   return sup.getAnnotationRec(ax)
 }
-
-internal inline fun <T> having(t: T, builder: T.() -> Unit): T {
-  t.builder()
-  return t
-}

@@ -36,7 +36,7 @@ internal class XmlElementWrap<T : Any>(val elementName : String, property : XBin
   override fun save(scope: () -> Element) {
     property.save {
       val el = scope();
-      (el.getChild(elementName) ?: having(Element(elementName)) { el.addContent(this as Content) } )
+      (el.getChild(elementName) ?: Element(elementName).apply { el.addContent(this as Content) } )
     }
   }
 
@@ -50,7 +50,7 @@ internal class XmlAnyElementWrap<T : Any>(property : XBindProperty<T>) : XProper
 
   override fun save(scope: () -> Element) {
     anyElementSave(property, scope) { parent, elementName ->
-      parent.getChild(elementName) ?: having(Element(elementName)) { parent.addContent(this as Content) }
+      parent.getChild(elementName) ?: Element(elementName).apply { parent.addContent(this as Content) }
     }
   }
 }
@@ -69,7 +69,7 @@ internal class XmlElementsWrap<T : Any>(val elementName : String, val property :
     value.forEach {
       val p = property()
       p.value = it
-      p.save { having(Element(elementName)) { scope.addContent(this as Content) } }
+      p.save { Element(elementName).apply { scope.addContent(this as Content) } }
     }
   }
 
@@ -91,7 +91,7 @@ internal class XmlAnyElementsWrap<T : Any>(val property : () -> XBindProperty<T>
       val p = property()
       p.value = it
       anyElementSave(p, {scope}){ parent, elementName ->
-        having(Element(elementName)) { parent.addContent(this as Content) }
+        Element(elementName).apply { parent.addContent(this as Content) }
       }
     }
   }
