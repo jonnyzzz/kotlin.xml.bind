@@ -29,8 +29,12 @@ internal object JDOMIMPL {
   private fun <T : Any> elementsToBind(t : T): List<XmlBind> = t.delegatedProperties(XmlBind::class.java)
 
   fun <T : Any> load(_element : Element, clazz : Class<T>) : T {
-    val element = _element.clone()
     val t = clazz.newInstance()
+    return bind(_element, t)
+  }
+
+  fun <T : Any> bind(_element : Element, t : T) : T {
+    val element = _element.clone()
 
     val fields = elementsToBind(t).toCollection(LinkedList())
     val p1: (XmlBind) -> Boolean = { it is XElementMatcher }

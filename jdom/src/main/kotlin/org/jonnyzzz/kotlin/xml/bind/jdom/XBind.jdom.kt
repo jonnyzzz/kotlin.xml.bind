@@ -9,6 +9,7 @@ object XUnknown : XUnknownElement<Element>(Element::class.java)
 
 interface JDOMXMLRootBuilder {
   fun <T : Any> load(element: Element, clazz: Class<T>): T
+  fun <T : Any> bind(element: Element, obj : T): T
   fun <T : Any> save(t: T, clazz: Class<T> = t.javaClass): Element
 
   fun <T : Any> clone(t: T): T
@@ -20,6 +21,7 @@ val JXML : XMLRootBuilder
 
 object JDOM : JDOMXMLRootBuilder {
   override fun <T : Any> load(element: Element, clazz: Class<T>): T = JDOMIMPL.load(element, clazz)
+  override fun <T : Any> bind(element: Element, obj: T): T = JDOMIMPL.bind(element, obj)
   override fun <T : Any> save(t: T, clazz: Class<T>): Element = JDOMIMPL.save(t, clazz)
   override fun <T : Any> clone(t: T): T = JDOMIMPL.clone(t)
 }
