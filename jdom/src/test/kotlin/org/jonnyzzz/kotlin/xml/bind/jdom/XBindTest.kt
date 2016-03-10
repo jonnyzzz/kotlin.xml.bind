@@ -14,6 +14,26 @@ import org.junit.Test
 
 
 class XBindTest {
+  @Test fun test_copy_XML() {
+    class M(val x : String) {
+      var Y : String? by JXML / XText
+    }
+
+    val m1 = M("z").apply { Y = "aaa" }
+    val m2 = M("q").apply { JDOM.copy(m1, this) }
+
+    Assert.assertEquals(m1.Y, m2.Y)
+  }
+
+  @Test fun test_bind_XML() {
+    class M(val x : String) {
+      var Y : String? by JXML / XText
+    }
+
+    val m1 = M("z").apply { JDOM.bind(jdom("aaa") { text("yohoho") }, this) }
+    Assert.assertEquals("yohoho", m1.Y)
+  }
+
   @Test fun test_can_read_text_from_XML() {
     class Data {
       var X : String? by JXML / XText

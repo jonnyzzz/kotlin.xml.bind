@@ -24,14 +24,20 @@ internal object JDOMIMPL {
   val ROOT : XMLBuilderImpl
     get() = XMLBuilderImpl()
 
-  fun <T : Any> clone(t : T) : T = with(t.javaClass) { load(save(t, this), this) }
+  fun <T : Any> copy(from : T, to : T) {
+    val xml = save("mock-root-name", from)
+    bind(xml, to)
+  }
+
+  fun <T : Any> clone(t : T) : T {
+    val clazz = t.javaClass
+    val xml = save("mock-root-name", t)
+    return load(xml, clazz)
+  }
 
   private fun <T : Any> elementsToBind(t : T): List<XmlBind> = t.delegatedProperties(XmlBind::class.java)
 
-  fun <T : Any> load(_element : Element, clazz : Class<T>) : T {
-    val t = clazz.newInstance()
-    return bind(_element, t)
-  }
+  fun <T : Any> load(_element : Element, clazz : Class<T>) : T = bind(_element, clazz.newInstance())
 
   fun <T : Any> bind(_element : Element, t : T) : T {
     val element = _element.clone()
