@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/jonnyzzz/kotlin.xml.bind.svg?branch=master)](https://travis-ci.org/jonnyzzz/kotlin.xml.bind)
 
-Kotlin XML data binding DLS
+Kotlin XML data binding DSL
 ==============
 
 This is a tiny library that allows one to generate
