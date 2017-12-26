@@ -7,7 +7,7 @@ buildscript {
 }
 
 plugins {
-  id "com.jfrog.bintray" version "1.5"
+  id "com.jfrog.bintray" version "1.7.3"
 }
 
 repositories {
@@ -81,7 +81,7 @@ subprojects {
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.11'
+  gradleVersion = '4.4.1'
 }
 
 task bintrayUploadEx {
