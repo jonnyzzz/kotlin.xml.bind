@@ -1,6 +1,6 @@
 package org.jonnyzzz.kotlin.xml.bind.jdom.impl
 
-import kotlin.reflect.declaredMemberProperties
+import kotlin.reflect.full.declaredMemberProperties
 
 
 internal fun <T : Any> Class<T>.declaredPropertyNames(): Set<String> {
